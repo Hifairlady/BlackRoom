@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="Dimen1dp">1dp</dimen>
+    <dimen name="Dimen2dp">2dp</dimen>
+    <dimen name="Dimen3dp">3dp</dimen>
+    <dimen name="Dimen4dp">4dp</dimen>
+    <dimen name="Dimen8dp">8dp</dimen>
+    <dimen name="Dimen16dp">16dp</dimen>
+    <dimen name="Dimen20dp">20dp</dimen>
+    <dimen name="DimenStatusHeight">24dp</dimen>
+    <dimen name="TextSize10sp">10sp</dimen>
+    <dimen name="TextSize12sp">12sp</dimen>
+    <dimen name="TextSize14sp">14sp</dimen>
+    <dimen name="TextSize16sp">16sp</dimen>
+    <dimen name="TextSize18sp">18sp</dimen>
+    <dimen name="TextSize20sp">20sp</dimen>
+    <dimen name="TextSize24sp">24sp</dimen>
+</resources>

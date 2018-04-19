@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/Dimen16dp"
+            style="@style/BulletinBoardTitle"/>
+
+        <include layout="@layout/button_more" />
+
+    </LinearLayout>
+
+    <!--<include layout="@layout/rv_bulletin_item" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bulletin_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/Dimen16dp"
+        android:scrollbars="vertical">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

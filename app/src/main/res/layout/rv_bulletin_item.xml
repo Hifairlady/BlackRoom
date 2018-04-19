@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="@dimen/Dimen8dp"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="·"
+        android:textSize="16sp"
+        android:textColor="@color/primary_text"/>
+
+    <TextView
+        android:visibility="visible"
+        android:id="@+id/bulletin_new_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NEW"
+        android:textSize="16sp"
+        android:padding="@dimen/Dimen2dp"
+        android:background="@drawable/new_bulletin_label"
+        android:textColor="@color/colorAccent"/>
+
+    <TextView
+        android:id="@+id/bulletin_item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="一周B站热评 #35 您有新的美团订单，请及时处理"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:layout_marginLeft="@dimen/Dimen8dp"
+        android:layout_marginRight="@dimen/Dimen8dp"
+        android:textColor="@color/primary_text"/>
+
+    <TextView
+        android:id="@+id/bulletin_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018-04-13"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:textColor="@color/secondary_text"/>
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyCardStyle">
+
+        <item name="android:layout_marginLeft">@dimen/Dimen4dp</item>
+        <item name="android:layout_marginRight">@dimen/Dimen4dp</item>
+        <item name="android:layout_marginTop">@dimen/Dimen8dp</item>
+        <item name="android:layout_marginBottom">@dimen/Dimen8dp</item>
+
+    </style>
+
+
+    <style name="BulletinBoardTitle">
+
+        <item name="android:text">社区公告板</item>
+        <item name="android:textSize">@dimen/TextSize18sp</item>
+        <item name="android:textColor">@color/primary_text</item>
+
+    </style>
+
+
+    <style name="ButtonMoreStyle">
+
+        <item name="android:text">MORE</item>
+        <item name="android:textSize">@dimen/TextSize14sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/roboto_slab_bold</item>
+
+    </style>
+
+</resources>
