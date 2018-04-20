@@ -1,20 +1,21 @@
 package com.edgar.blackroom;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,13 +23,19 @@ public class MainActivity extends AppCompatActivity {
     private static final int GET_DATA_SUCCESS = 101;
     private static final int GET_DATA_FAILED = 102;
 
+    private static final String TAG = MainActivity.class.getSimpleName() + "================";
+
     private static final String BLACK_ROOM_URL = "https://www.bilibili.com/blackroom/ban";
+    private String errorString = "";
+
+    private String btnMoreUrl;
 
     private LinearLayout btnMore;
     private RecyclerView recyclerView;
     private ViewPagerAdapter adapter;
     private ArrayList<BulletinItem> bulletinItems = new ArrayList<>();
     private Handler getBulletinsHandler;
+    private ParseHtmlThread parseHtmlThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setUI();
-        setData();
 
         getBulletinsHandler = new Handler() {
             @Override
@@ -45,9 +51,14 @@ public class MainActivity extends AppCompatActivity {
                 switch (msg.what) {
 
                     case GET_DATA_SUCCESS:
+                        Snackbar.make(recyclerView, parseHtmlThread.getResultString(),
+                                Snackbar.LENGTH_SHORT).show();
+                        adapter.notifyDataSetChanged();
                         break;
 
                     case GET_DATA_FAILED:
+                        Snackbar.make(recyclerView, parseHtmlThread.getResultString(),
+                                Snackbar.LENGTH_SHORT).show();
                         break;
 
                     default:
@@ -56,10 +67,40 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        parseHtmlThread = new ParseHtmlThread(BLACK_ROOM_URL, getBulletinsHandler);
+        parseHtmlThread.setDataFromDocument(dataFromDocument);
+        parseHtmlThread.start();
+
     }
 
-    private void setData() {
-    }
+    private ParseHtmlThread.DataFromDocument dataFromDocument = new ParseHtmlThread.DataFromDocument() {
+        @Override
+        public void setData(Document document) {
+            Element moreElement = document.selectFirst("a.more");
+            btnMoreUrl = moreElement.absUrl("href");
+            Log.d(TAG, "setData: " + btnMoreUrl);
+            Element noticeBoxElement = document.selectFirst("div.notice-box");
+            Elements noticeChildrenElements = noticeBoxElement.children();
+
+            String titleString;
+            String urlString;
+            String dateString;
+            boolean isNew;
+
+            for (Element noticeChildElement : noticeChildrenElements) {
+                titleString = noticeChildElement.getElementsByClass("title").first().text();
+                urlString = noticeChildElement.getElementsByClass("notice-list clearfix")
+                        .first().absUrl("href");
+                dateString = noticeChildElement.getElementsByClass("time").first().text();
+                isNew = (noticeChildElement.getElementsByClass("new").first() == null);
+                BulletinItem bulletinItem = new BulletinItem(titleString, dateString,
+                        isNew, urlString);
+                Log.d(TAG, "setData: " + bulletinItem.toString());
+                bulletinItems.add(bulletinItem);
+//                break;
+            }
+        }
+    };
 
     private void setUI() {
 
@@ -81,28 +122,8 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Snackbar.make(recyclerView, "Network Error!", Snackbar.LENGTH_SHORT).show();
+//            Snackbar.make(recyclerView, "Network Error!", Snackbar.LENGTH_SHORT).show();
         }
     };
-
-    private class GetBulletinsThread extends Thread {
-
-        @Override
-        public void run() {
-            super.run();
-            try {
-                Document document = Jsoup.connect(BLACK_ROOM_URL).get();
-                String pageTitle = document.title();
-                if (pageTitle == null) {
-                    Snackbar.make(recyclerView, "Network Error!", Snackbar.LENGTH_SHORT);
-                }
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
 
 }

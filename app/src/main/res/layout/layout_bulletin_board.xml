@@ -2,8 +2,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:gravity="center_vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/layout_header"
@@ -12,11 +13,18 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_notifications_24dp"
+            android:layout_marginStart="@dimen/Dimen16dp"
+            android:scaleType="centerCrop"/>
+
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:padding="@dimen/Dimen16dp"
+            android:text="@string/bulletin_board_title"
             style="@style/BulletinBoardTitle"/>
 
         <include layout="@layout/button_more" />
@@ -28,11 +36,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/bulletin_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/Dimen16dp"
-        android:scrollbars="vertical">
-
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="168dp"
+        android:padding="@dimen/Dimen8dp"
+        android:scrollbars="none" />
 
 </LinearLayout>

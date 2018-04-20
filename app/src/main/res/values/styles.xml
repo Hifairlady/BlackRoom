@@ -20,16 +20,28 @@
 
     <style name="BulletinBoardTitle">
 
-        <item name="android:text">社区公告板</item>
-        <item name="android:textSize">@dimen/TextSize18sp</item>
+        <item name="android:textSize">@dimen/TextSize16sp</item>
         <item name="android:textColor">@color/primary_text</item>
+        <item name="android:padding">@dimen/Dimen8dp</item>
+
+    </style>
+
+
+
+    <style name="FjwEntranceTitle">
+
+        <item name="android:textSize">@dimen/TextSize16sp</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:paddingLeft">@dimen/Dimen8dp</item>
+        <item name="android:paddingRight">@dimen/Dimen8dp</item>
+        <item name="android:paddingTop">@dimen/Dimen16dp</item>
+        <item name="android:paddingBottom">@dimen/Dimen16dp</item>
 
     </style>
 
 
     <style name="ButtonMoreStyle">
 
-        <item name="android:text">MORE</item>
         <item name="android:textSize">@dimen/TextSize14sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:fontFamily">@font/roboto_slab_bold</item>

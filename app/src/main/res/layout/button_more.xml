@@ -2,15 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_height="50dp"
     android:gravity="center_vertical"
-    android:padding="@dimen/Dimen16dp"
+    android:padding="@dimen/Dimen8dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:id="@+id/btn_bulletin_more">
 
     <TextView
+        android:text="@string/btn_more_string"
         style="@style/ButtonMoreStyle"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
