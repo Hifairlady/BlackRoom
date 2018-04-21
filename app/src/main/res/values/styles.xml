@@ -17,21 +17,18 @@
 
     </style>
 
-
     <style name="BulletinBoardTitle">
 
         <item name="android:textSize">@dimen/TextSize16sp</item>
-        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColor">@color/colorGray</item>
         <item name="android:padding">@dimen/Dimen8dp</item>
 
     </style>
 
-
-
     <style name="FjwEntranceTitle">
 
         <item name="android:textSize">@dimen/TextSize16sp</item>
-        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColor">@color/colorGray</item>
         <item name="android:paddingLeft">@dimen/Dimen8dp</item>
         <item name="android:paddingRight">@dimen/Dimen8dp</item>
         <item name="android:paddingTop">@dimen/Dimen16dp</item>
@@ -39,12 +36,34 @@
 
     </style>
 
-
     <style name="ButtonMoreStyle">
 
         <item name="android:textSize">@dimen/TextSize14sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:fontFamily">@font/roboto_slab_bold</item>
+
+    </style>
+
+    <style name="BulletinDetailTitle">
+
+        <item name="android:textSize">@dimen/TextSize14sp</item>
+        <item name="android:fontFamily">@font/roboto_slab</item>
+
+    </style>
+
+    <style name="OfficialBulletinTitle">
+
+        <item name="android:textSize">@dimen/TextSize20sp</item>
+        <item name="android:fontFamily">@font/roboto_slab</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primary_text</item>
+
+    </style>
+
+    <style name="OfficialBulletinDate">
+
+        <item name="android:textSize">@dimen/TextSize14sp</item>
+        <item name="android:textColor">@color/secondary_text</item>
 
     </style>
 

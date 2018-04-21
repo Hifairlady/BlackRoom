@@ -6,14 +6,16 @@
     android:clickable="true"
     android:focusable="true"
     android:padding="@dimen/Dimen8dp"
+    android:id="@+id/item_root_layout"
     android:foreground="?android:attr/selectableItemBackgroundBorderless">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_slab"
         android:text="·"
-        android:textSize="16sp"
-        android:textColor="@color/primary_text"/>
+        android:textColor="@color/primary_text"
+        android:textSize="16sp" />
 
     <TextView
         android:visibility="visible"
@@ -44,7 +46,7 @@
         android:layout_height="wrap_content"
         android:text="2018-04-13"
         android:singleLine="true"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textColor="@color/secondary_text"/>
 
 </LinearLayout>

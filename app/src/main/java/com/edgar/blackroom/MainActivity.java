@@ -1,5 +1,6 @@
 package com.edgar.blackroom;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.edgar.blackroom.Activities.AllNoticesActivity;
+import com.edgar.blackroom.Activities.BulletinDetailActivity;
+import com.edgar.blackroom.Adapters.ViewPagerAdapter;
+import com.edgar.blackroom.Items.BulletinItem;
+import com.edgar.blackroom.Utils.ParseHtmlThread;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,10 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName() + "================";
 
-    private static final String BLACK_ROOM_URL = "https://www.bilibili.com/blackroom/ban";
-    private String errorString = "";
-
-    private String btnMoreUrl;
+    private static final String BLACK_ROOM_URL = "https://www.bilibili.com/blackroom/notice/community";
+    private static final String btnMoreUrl = "https://www.bilibili.com/blackroom/notice";
 
     private LinearLayout btnMore;
     private RecyclerView recyclerView;
@@ -76,23 +81,33 @@ public class MainActivity extends AppCompatActivity {
     private ParseHtmlThread.DataFromDocument dataFromDocument = new ParseHtmlThread.DataFromDocument() {
         @Override
         public void setData(Document document) {
-            Element moreElement = document.selectFirst("a.more");
-            btnMoreUrl = moreElement.absUrl("href");
-            Log.d(TAG, "setData: " + btnMoreUrl);
-            Element noticeBoxElement = document.selectFirst("div.notice-box");
-            Elements noticeChildrenElements = noticeBoxElement.children();
+//            Element moreElement = document.selectFirst("a.more");
+//            btnMoreUrl = moreElement.absUrl("href");
+
+            Element newsBoxElement = document.selectFirst("div.news-box");
+            Elements nesChildrenElements = newsBoxElement.getElementsByTag("a");
 
             String titleString;
             String urlString;
             String dateString;
             boolean isNew;
 
-            for (Element noticeChildElement : noticeChildrenElements) {
-                titleString = noticeChildElement.getElementsByClass("title").first().text();
-                urlString = noticeChildElement.getElementsByClass("notice-list clearfix")
-                        .first().absUrl("href");
-                dateString = noticeChildElement.getElementsByClass("time").first().text();
-                isNew = (noticeChildElement.getElementsByClass("new").first() == null);
+            for (Element newsChildElement : nesChildrenElements) {
+
+                Element itemElement = newsChildElement.getElementsByClass("item").first();
+                Element titleElement = itemElement.getElementsByClass("title").first();
+
+                urlString = itemElement.absUrl("href");
+
+                //only get the official notice
+                if (!urlString.contains("blackroom/notice")) {
+                    continue;
+                }
+
+                titleString = titleElement.getElementsByTag("strong").first().text();
+                dateString = titleElement.getElementsByClass("time").first().text();
+                isNew = (newsChildElement.selectFirst("span.new") != null);
+
                 BulletinItem bulletinItem = new BulletinItem(titleString, dateString,
                         isNew, urlString);
                 Log.d(TAG, "setData: " + bulletinItem.toString());
@@ -110,11 +125,12 @@ public class MainActivity extends AppCompatActivity {
         btnMore = (LinearLayout)findViewById(R.id.btn_bulletin_more);
         btnMore.setOnClickListener(mOnClickListener);
 
-        recyclerView = (RecyclerView)findViewById(R.id.bulletin_recyclerview);
+        recyclerView = (RecyclerView)findViewById(R.id.bulletin_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new ViewPagerAdapter(MainActivity.this, bulletinItems);
+        adapter.setOnItemClickListener(mItemClickListener);
         recyclerView.setAdapter(adapter);
 
     }
@@ -122,7 +138,32 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-//            Snackbar.make(recyclerView, "Network Error!", Snackbar.LENGTH_SHORT).show();
+
+            switch (v.getId()) {
+
+                case R.id.btn_bulletin_more:
+                    Intent allNoticesIntent = new Intent(MainActivity.this, AllNoticesActivity.class);
+                    allNoticesIntent.putExtra("queryUrl", btnMoreUrl);
+                    startActivity(allNoticesIntent);
+                    break;
+
+                case R.id.btn_fjw_entrance:
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+    };
+
+    private ViewPagerAdapter.ItemClickListener mItemClickListener = new ViewPagerAdapter.ItemClickListener() {
+        @Override
+        public void onItemClick(int position) {
+            Intent bulletinDetailIntent = new Intent(MainActivity.this, BulletinDetailActivity.class);
+            bulletinDetailIntent.putExtra("titleString", bulletinItems.get(position).getTitleString());
+            bulletinDetailIntent.putExtra("queryUrl", bulletinItems.get(position).getUrlString());
+            startActivity(bulletinDetailIntent);
         }
     };
 

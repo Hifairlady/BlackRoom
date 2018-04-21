@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/bulletin_board_title"
+            android:text="@string/official_bulletin_board_title"
             style="@style/BulletinBoardTitle"/>
 
         <include layout="@layout/button_more" />
@@ -34,10 +34,12 @@
     <!--<include layout="@layout/rv_bulletin_item" />-->
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/bulletin_recyclerview"
+        android:id="@+id/bulletin_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="168dp"
-        android:padding="@dimen/Dimen8dp"
-        android:scrollbars="none" />
+        android:paddingTop="@dimen/Dimen8dp"
+        android:paddingLeft="@dimen/Dimen8dp"
+        android:paddingRight="@dimen/Dimen8dp"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

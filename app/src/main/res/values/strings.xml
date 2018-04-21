@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">BlackRoom</string>
+    <string name="app_name">小黑屋</string>
     <string name="bulletin_board_title">社区公告板</string>
+    <string name="official_bulletin_board_title">官方公告</string>
     <string name="fjw_entrance_title">风纪委员会</string>
     <string name="btn_more_string">更多</string>
-    <string name="btn_entrance_string">进入</string>
+    <string name="btn_entrance_string">加入</string>
     <string name="community_rules_title">《小黑屋社区规范》</string>
     <string name="punish_rules_title">《小黑屋处罚条例V1.4》</string>
 </resources>
