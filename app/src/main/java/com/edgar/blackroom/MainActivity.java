@@ -36,11 +36,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String BLACK_ROOM_URL = "https://www.bilibili.com/blackroom/notice/community";
     private static final String btnMoreUrl = "https://www.bilibili.com/blackroom/notice";
 
-    private LinearLayout btnMore;
     private RecyclerView recyclerView;
     private ViewPagerAdapter adapter;
     private ArrayList<BulletinItem> bulletinItems = new ArrayList<>();
-    private Handler getBulletinsHandler;
     private ParseHtmlThread parseHtmlThread;
 
     @SuppressLint("HandlerLeak")
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         setUI();
 
-        getBulletinsHandler = new Handler() {
+        Handler getBulletinsHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
@@ -124,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        btnMore = findViewById(R.id.btn_bulletin_more);
+        LinearLayout btnMore = findViewById(R.id.btn_bulletin_more);
         btnMore.setOnClickListener(mOnClickListener);
 
         recyclerView = findViewById(R.id.bulletin_recycler_view);
