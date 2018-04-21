@@ -1,5 +1,6 @@
 package com.edgar.blackroom;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler getBulletinsHandler;
     private ParseHtmlThread parseHtmlThread;
 
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,13 +121,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUI() {
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.my_toolbar);
+        Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        btnMore = (LinearLayout)findViewById(R.id.btn_bulletin_more);
+        btnMore = findViewById(R.id.btn_bulletin_more);
         btnMore.setOnClickListener(mOnClickListener);
 
-        recyclerView = (RecyclerView)findViewById(R.id.bulletin_recycler_view);
+        recyclerView = findViewById(R.id.bulletin_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);

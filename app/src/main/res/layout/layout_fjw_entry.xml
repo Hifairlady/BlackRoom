@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/Dimen16dp"
+            android:padding="@dimen/Dimen2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_fjw_24dp" />
+
+        <TextView
+            style="@style/BulletinBoardTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fjw_entrance_title" />
+
+        <include layout="@layout/button_fjw_entrance" />
+
+
+    </LinearLayout>
+
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/Dimen1dp"-->
+    <!--android:layout_marginStart="@dimen/Dimen8dp"-->
+    <!--android:layout_marginEnd="@dimen/Dimen8dp"-->
+    <!--android:background="@color/divider"/>-->
+
+    <TextView
+        android:id="@+id/tv_community_rules"
+        style="@style/FjwEntranceTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/community_rules_title"
+        android:textColor="@color/primary_text" />
+
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/Dimen1dp"-->
+    <!--android:layout_marginStart="@dimen/Dimen8dp"-->
+    <!--android:layout_marginEnd="@dimen/Dimen8dp"-->
+    <!--android:background="@color/divider"/>-->
+
+    <TextView
+        android:id="@+id/tv_punish_rules"
+        style="@style/FjwEntranceTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/punish_rules_title"
+        android:textColor="@color/primary_text" />
+
+
+</LinearLayout>
