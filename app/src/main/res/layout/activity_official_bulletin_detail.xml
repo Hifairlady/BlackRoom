@@ -30,13 +30,14 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/Dimen8dp" />
 
-            <!--<org.sufficientlysecure.htmltextview.HtmlTextView-->
-            <!--android:id="@+id/my_html_text_view"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:padding="@dimen/Dimen8dp"-->
-            <!--android:textSize="@dimen/TextSize16sp"-->
-            <!--android:textColor="@color/primary_text"/>-->
+            <org.sufficientlysecure.htmltextview.HtmlTextView
+                android:id="@+id/my_html_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/Dimen8dp"
+                android:textColor="@color/primary_text"
+                android:textColorLink="@color/colorPrimary"
+                android:textSize="@dimen/TextSize16sp" />
 
         </LinearLayout>
 
